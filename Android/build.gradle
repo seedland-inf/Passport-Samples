@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {url "http://nexus.seedland.cc:8081/repository/maven-snapshots/"}
     }
 }
 
