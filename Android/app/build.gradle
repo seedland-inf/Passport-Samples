@@ -9,14 +9,33 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
+        debug {
+            resValue "string", "passport_channel", "test"         // PassportSDK的渠道号
+            resValue "string", "passport_key", "hay8qwz"          // PassportSDK的开发者Key
+        }
+
         release {
+            resValue "string", "passport_channel", "test"         // PassportSDK的渠道号
+            resValue "string", "passport_key", "hay8qwz"          // PassportSDK的开发者Key
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 1, 'minutes'
+}
+
+//repositories{
+//    flatDir{
+//        dirs 'libs'
+//    }
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -25,4 +44,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+
+    implementation('cc.seedland.inf:passport:1.0-SNAPSHOT@aar'){
+        transitive=true
+    }
+//    implementation(name:'passport', ext:'aar')
 }

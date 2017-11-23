@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Samples-Android</string>
+
+    <string name="main_default_nickname">未登录</string>
 </resources>
