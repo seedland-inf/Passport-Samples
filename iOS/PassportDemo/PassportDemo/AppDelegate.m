@@ -7,16 +7,50 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+//#import "SDKitManager.h"
+
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) UIWindow *w2;
+
 @end
+
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    [[SDKitManager shareKitManager] initSdkWithChannel:@"test" andKey:@"hay8qwz"];
+    
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    ViewController *rootView = [[ViewController alloc] init];
+    self.window.rootViewController = rootView;
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rootView];
+//    self.window.rootViewController = nav;
+    
+    [self.window makeKeyAndVisible];
+    
+    
+//    // 2. 再创建一个窗口
+//    UIWindow *w2 = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    UIViewController *vc = [UIViewController new];
+//    [vc.view setBackgroundColor:[UIColor clearColor]];
+//    w2.backgroundColor = [UIColor yellowColor];
+//    w2.rootViewController = vc;
+//    [w2 makeKeyAndVisible];
+//    self.w2 = w2;
+//
+//
+//    // 3.2将文本输入框添加到w2中
+//    UITextField *tx2 = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 100, 40)];
+//    tx2.borderStyle = UITextBorderStyleRoundedRect;
+//    [self.w2 addSubview:tx2];
+    
+    
     return YES;
 }
 
@@ -35,6 +69,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+//    [[SDKitManager shareKitManager] updateToken];
 }
 
 
