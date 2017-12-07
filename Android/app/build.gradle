@@ -46,7 +46,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
 
+<<<<<<< HEAD
     implementation('cc.seedland.inf:passport:1.0-SNAPSHOT@aar'){
+=======
+    implementation('cc.seedland.inf:passport:1.0.0-SNAPSHOT@aar'){
+>>>>>>> parent of 543d144... 完成Demo
         transitive=true
     }
 //    implementation(name:'passport', ext:'aar')
