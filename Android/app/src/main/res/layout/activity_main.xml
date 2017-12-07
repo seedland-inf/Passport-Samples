@@ -47,5 +47,4 @@
         android:layout_below="@id/main_password"
         android:visibility="gone"
         android:text="退出登录" />
-
 </RelativeLayout>
