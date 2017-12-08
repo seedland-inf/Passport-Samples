@@ -11,8 +11,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
-        resValue "string", "passport_channel", "test"         // PassportSDK的渠道号
-        resValue "string", "passport_key", "hay8qwz"          // PassportSDK的开发者Key
+        resValue "string", "passport_channel", "passport.android"         // PassportSDK的渠道号
+        resValue "string", "passport_key", "dk^wBXnw3cUUqBgB"             // PassportSDK的开发者Key
     }
 
     buildTypes {
