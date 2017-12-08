@@ -27,8 +27,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        // todo 替换成实际私服地址
-        maven {url "http://nexus.seedland.cc:8081/repository/maven-snapshots/"}
+        maven {url "http://developer.seedland.cc/nexus/repository/maven-public/"}
     }
 }
 ```
@@ -68,26 +67,9 @@ dependencies {
 ```gradle
 defaultConfig {
         // passport_channel和passport-key为资源名，可任意命名，但必须满足资源命名规则
-        resValue "string", "passport_channel", "your channel"
-        resValue "string", "passport-key", "your key"
+        resValue "string", "passport_channel", "your channel"      // PassportSDK的渠道号
+        resValue "string", "passport-key", "your key"              // PassportSDK的开发者Key
 }
-```
-* 为不同编译环境分别添加
-```gradle
-buildTypes {
-        // 调试环境下使用的channel和key
-        debug {
-            resValue "string", "passport_channel", "test"                     // PassportSDK的渠道号
-            resValue "string", "passport_key", "hay8qwz"                      // PassportSDK的开发者Key
-        }
-       // 发布环境下使用的channel和key
-       release {
-            resValue "string", "passport_channel", "your channel"         // PassportSDK的渠道号
-            resValue "string", "passport_key", "your key"                 // PassportSDK的开发者Key
-
-            ...
-        }
-    }
 ```
 
 ## <a name="DOC"></a>文档
@@ -112,7 +94,7 @@ public class SampleApplication extends Application {
 }
 ```
 
-在AndroidManifest.xml文件中，使用自定义的Application
+在AndroidManifest.xml文件中，使用自定义的Application，如
 ```xml
 <application
         android:name=".SampleApplication"
@@ -135,7 +117,7 @@ SDK统一使用startActivityForResult的方式调用支持Passport APIs的界面
 1. 定义请求码
 ```java
 ...
-private static final int REQUEST_CODE_LOGIN = 1; // 可以是任意数字
+private static final int REQUEST_CODE_LOGIN = 1; // 可以是任意整型数字
 ...
 ```
 
