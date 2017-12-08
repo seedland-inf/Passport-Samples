@@ -1,5 +1,59 @@
 apply plugin: 'com.android.application'
 
+/*---------------------------------------------------
+ 开发环境：     Android Studio 3.0.0 及以上
+ Gradle插件：  com.android.tools.build:gradle:3.0.0 及以上
+ ---------------------------------------------------*/
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "cc.seedland.inf.samples"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        resValue "string", "passport_channel", "passport.android"         // PassportSDK的渠道号
+        resValue "string", "passport_key", "dk^wBXnw3cUUqBgB"             // PassportSDK的开发者Key
+    }
+
+    buildTypes {
+
+        release {
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 1, 'minutes'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    implementation('cc.seedland.inf:passport:1.0.0-SNAPSHOT@aar'){
+        transitive=true
+    }
+}
+
+
+/*---------------------------------------------------
+ 开发环境：     Android Studio 2.3.3 及以下
+ Gradle插件：  com.android.tools.build:gradle:2.3.3 及以下
+ ---------------------------------------------------*/
+
+/*
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
@@ -41,3 +95,4 @@ dependencies {
         transitive=true
     }
 }
+*/
