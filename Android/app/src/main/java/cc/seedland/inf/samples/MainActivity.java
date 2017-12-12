@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cc.seedland.inf.passport.PassportHome;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView nickNameTxv;
     private TextView mobileTxv;
     private TextView remarkTxv;
+    private TextView resultTxv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         passwordBtn.setOnClickListener(this);
         logoutBtn = findViewById(R.id.main_logout);
         logoutBtn.setOnClickListener(this);
+        resultTxv = findViewById(R.id.main_result);
 
         updateState();
 
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Config.saveMobile("");
                 PassportHome.getInstance().logout();
                 updateState();
+                resultTxv.setText("");
                 break;
         }
     }
@@ -78,7 +82,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     break;
             }
+        }else if(resultCode == RESULT_CANCELED) {
+            switch (requestCode) {
+                case REQUEST_CODE_LOGIN:
+                    break;
+                case REQUEST_CODE_PASSWORD:
+                    updateState();
+                    break;
+            }
         }
+
+
+        String raw = data != null ? data.getStringExtra("raw_result") : "";
+        resultTxv.setText("原始结果：" + raw);
 
     }
 

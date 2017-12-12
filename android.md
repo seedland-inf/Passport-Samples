@@ -135,6 +135,8 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
 ```java
 ...
 
+执行操作返回码为*RESULT_OK*，未执行操作返回码为*RESULT_CANCELED*
+
 @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -151,8 +153,15 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
                     break;
                ...
             }
+        }else if(resultCode == RESULT_CANCELED) {
+            switch(requestCode) {
+                case REQUEST_CODE_LOGIN:
+                    ....
+                    break;
+            }
+            ...
         }
-
+        ...
     }
 ...
 ```
@@ -238,9 +247,28 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
 ```
 **<a name="PASSWORD-MODIFY"></a>修改密码**
 
+*修改密码后，用户未执行登录操作，请您在onActivityResult回调中利用RESULT_CANCELED自行处理*
+
 * 调用方法：PassportHome.getInstance().startModifyPassword(this, REQUEST_CODE_PASSWORD);
-* 返回内容
-    * 解析数据
+* 返回内容-修改后登录
+    * 解析数据
+        * uid
+        * mobile
+        * nickname
+        * ip
+        * token
+    * 原始数据  
+```json
+         {
+                "uid":99,
+                "mobile":"13800138000",
+                "nickname":"User_13800138000",
+                "register_ip":"192.168.232.2",
+                "sso_tk":"UnmdO3T2CbiOjp/GWTnTdBh+cNh816nDlFegYdZ02yOoEAfe12XFmSbklBlUyC7AS0F5CfDVuzPKNn/pV4uUBiUso/hhF3PqKSj6XmACwk/yr+71Aff2ha+nax9+xtYoH/F+c8urDWLTZcqJCuzkTmpr0e5G/eXQNCmxC+S+kl0="
+         }
+```
+* 返回内容-修改后未登录
+    * 解析数据
         * uid
         * mobile
         * nickname
