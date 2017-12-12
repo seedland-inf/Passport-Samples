@@ -132,6 +132,9 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
 
 3. 接收和处理结果
 
+执行操作返回码为*RESULT_OK*，未执行操作返回码为*RESULT_CANCELED*
+
+
 ```java
 ...
 
