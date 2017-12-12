@@ -254,7 +254,7 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
 
 * 调用方法：PassportHome.getInstance().startModifyPassword(this, REQUEST_CODE_PASSWORD);
 * 返回内容-修改后登录
-    * 解析数据
+    * 解析数据
         * uid
         * mobile
         * nickname
@@ -271,7 +271,7 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
          }
 ```
 * 返回内容-修改后未登录
-    * 解析数据
+    * 解析数据
         * uid
         * mobile
         * nickname
