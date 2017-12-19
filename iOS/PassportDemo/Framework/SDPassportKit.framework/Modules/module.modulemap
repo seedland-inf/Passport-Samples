@@ -1,0 +1,6 @@
+framework module SDPassportKit {
+  umbrella header "SDPassportKit.h"
+
+  export *
+  module * { export * }
+}

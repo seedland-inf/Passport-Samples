@@ -1,14 +1,14 @@
 //
 //  AppDelegate.m
-//  PassportDemo
+//  TestPassport
 //
-//  Created by SeedLandMac on 2017/12/5.
-//  Copyright © 2017年 Qizhigang. All rights reserved.
+//  Created by SeedLandMac on 2017/11/10.
+//  Copyright © 2017年 SeedLandMac. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-//#import "SDKitManager.h"
+#import "SDKitManager.h"
 
 
 @interface AppDelegate ()
@@ -24,7 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [[SDKitManager shareKitManager] initSdkWithChannel:@"test" andKey:@"hay8qwz"];
+    [[SDKitManager shareKitManager] initSdkWithChannel:@"test" andKey:@"hay8qwz"];
     
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ViewController *rootView = [[ViewController alloc] init];
@@ -69,7 +69,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-//    [[SDKitManager shareKitManager] updateToken];
+    [[SDKitManager shareKitManager] updateToken];
 }
 
 

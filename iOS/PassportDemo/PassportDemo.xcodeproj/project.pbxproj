@@ -12,6 +12,9 @@
 		624C56501FD6A93600757CEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 624C564F1FD6A93600757CEE /* Assets.xcassets */; };
 		624C56531FD6A93600757CEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624C56511FD6A93600757CEE /* LaunchScreen.storyboard */; };
 		624C56561FD6A93600757CEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 624C56551FD6A93600757CEE /* main.m */; };
+		626CBEA71FE840BC00C702F5 /* SDPassportKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 626CBEA61FE840BC00C702F5 /* SDPassportKit.bundle */; };
+		6273DD5B1FE2811D0093F9AB /* SDPassportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6273DD5A1FE2811D0093F9AB /* SDPassportKit.framework */; };
+		6273DD5E1FE284AF0093F9AB /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6273DD5C1FE284AF0093F9AB /* UserInfoModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,10 @@
 		624C56521FD6A93600757CEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		624C56541FD6A93600757CEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		624C56551FD6A93600757CEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		626CBEA61FE840BC00C702F5 /* SDPassportKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SDPassportKit.bundle; sourceTree = "<group>"; };
+		6273DD5A1FE2811D0093F9AB /* SDPassportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDPassportKit.framework; sourceTree = "<group>"; };
+		6273DD5C1FE284AF0093F9AB /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		6273DD5D1FE284AF0093F9AB /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6273DD5B1FE2811D0093F9AB /* SDPassportKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				624C56451FD6A93600757CEE /* PassportDemo */,
+				6273DD591FE2811D0093F9AB /* Framework */,
 				624C56441FD6A93600757CEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +69,8 @@
 				624C56471FD6A93600757CEE /* AppDelegate.m */,
 				624C56491FD6A93600757CEE /* ViewController.h */,
 				624C564A1FD6A93600757CEE /* ViewController.m */,
+				6273DD5D1FE284AF0093F9AB /* UserInfoModel.h */,
+				6273DD5C1FE284AF0093F9AB /* UserInfoModel.m */,
 				624C564F1FD6A93600757CEE /* Assets.xcassets */,
 				624C56511FD6A93600757CEE /* LaunchScreen.storyboard */,
 				624C56541FD6A93600757CEE /* Info.plist */,
@@ -67,6 +78,15 @@
 			);
 			path = PassportDemo;
 			sourceTree = "<group>";
+		};
+		6273DD591FE2811D0093F9AB /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				626CBEA61FE840BC00C702F5 /* SDPassportKit.bundle */,
+				6273DD5A1FE2811D0093F9AB /* SDPassportKit.framework */,
+			);
+			path = Framework;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -126,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				626CBEA71FE840BC00C702F5 /* SDPassportKit.bundle in Resources */,
 				624C56531FD6A93600757CEE /* LaunchScreen.storyboard in Resources */,
 				624C56501FD6A93600757CEE /* Assets.xcassets in Resources */,
 			);
@@ -140,6 +161,7 @@
 			files = (
 				624C564B1FD6A93600757CEE /* ViewController.m in Sources */,
 				624C56561FD6A93600757CEE /* main.m in Sources */,
+				6273DD5E1FE284AF0093F9AB /* UserInfoModel.m in Sources */,
 				624C56481FD6A93600757CEE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,12 +288,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6R96G99U5F;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework",
+				);
 				INFOPLIST_FILE = PassportDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seedland.PassportDemo;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.seedland.Demo.TestPassport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Framework/SDPassportKit.framework/Headers";
 			};
 			name = Debug;
 		};
@@ -279,12 +311,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6R96G99U5F;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework",
+				);
 				INFOPLIST_FILE = PassportDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seedland.PassportDemo;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.seedland.Demo.TestPassport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Framework/SDPassportKit.framework/Headers";
 			};
 			name = Release;
 		};
