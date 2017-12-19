@@ -1,10 +1,12 @@
 
-## 目录
+# 目录
 
 * [使用](#USE)
-    * [添加代码仓库](#REPO)
-    * [添加依赖](#DEPENENCY)
+    * [添加Passport对应的framework](#REPO)
+    * [修改工程配置](#SETUP)
+    * [注意事项](#NOTICE)
     * [添加开发者支持](#SUPPORT)
+* [DEMO](#DEMO)
 * [文档](#DOC)
     * [1.初始化](#INITIAL)
     * [2.调用](#CALL)
@@ -19,41 +21,28 @@
 ## <a name="USE"></a>使用
 ![](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)
 
-### <a name=“REPO”></a>1.添加代码仓库
+### <a name=“REPO”></a>1.添加Passport对应的framework
+![](https://raw.githubusercontent.com/seedland-passport/PassportDemo/master/Passport.jpg)
 
-**项目根目录的build.gradle文件中，添加**
-```gradle
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven {url "http://developer.seedland.cc/nexus/repository/maven-public/"}
-    }
-}
-```
-### <a name="DEPENENCY"></a>2.添加依赖
+**如图所示，将SDPassportKit.bundle和SDPassportKit.framework导入工程。**
 
-**在App的build.gradle文件的dependencies块中，添加**
+### <a name="SETUP"></a>2.修改工程配置
 
-* 3.0.0及以后版本
-```gradle
-dependencies {
-    implementation('cc.seedland.inf:passport:1.0.0@aar'){
-            transitive=true
-    }
-}
-```
+**在工程project文件中配置如下内容**
 
-* 2.3.3及以前版本
-```gradle
-dependencies {
-    compile('cc.seedland.inf:passport:1.0.0@aar'){
-            transitive=true
-    }
-}
-```
+方法（1）：依次打开：Targets-->Build Settings-->搜索‘Linking’-->Linking-->Other Linker Flags，将Other Linker Flags内容设置为-ObjC或-all_load，如果无效请多试几次。
 
-### <a name="SUPPORT"></a>3.添加开发者支持
+方法（2）：依次打开：Targets-->Build Settings-->搜索‘Search Paths’-->Search Paths-->Library Search Paths，将Framework文件路径拖入，保存。
+
+方法（3）：如上述两种方法均无效，请使用本方法。打开解压后的SDK文件夹，复制SDPassportKit.bundle和SDPassportKit.framework到项目根目录，即.xcodeproj所在文件夹。运行即可。
+
+**如果出现问题：错误信息为clang: error: linker command failed with exit code 1 (use -v to see invocation)
+可以检查工程中配置是否正确。**
+
+### <a name="NOTICE"></a>3.注意事项
+**请注意：SDPassportKit.framework 最低适配系统版本为iOS 8。否则会报错。**
+
+### <a name="SUPPORT"></a>4.添加开发者支持
 
 **获取开发者channel和开发者key**
 
@@ -63,12 +52,9 @@ dependencies {
 
 在App目录下的自定义配置文件中，或者AppDelegate.m中声明选用的chanel和key。
 
-### <a name="SUPPORT"></a>4.添加和配置Passport SDK
-**将passport.framework 添加到工程**
 
-1. 加入SDPassportKit.framework
-2. 在工程总配置相应的路径。
-
+## <a name="DEMO"></a>DEMO
+工程PassportDemo 为passport sdk使用的demo。可以参考工程中的使用方法和工程配置。
 
 ## <a name="DOC"></a>文档
 
