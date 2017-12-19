@@ -181,10 +181,18 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
     * 原始数据   
 ```json
 {
-        "uid":99,
-        "mobile":"13800138000",
-        "nickname":"User_13800138000",
-        "register_ip":"192.168.232.2"
+        "error_code":0,
+        "error_message":"succeed",
+        "data":{
+            "uid":99,
+            "mobile":"13800138000",
+            "nickname":"User_13800138000",
+            "register_ip":"192.168.232.2",
+            "sso_tk":"WCATe8Iy4itr5BSNIQPjPS/Bg/obSS7caEPuAREb5zeDkuFacEv0H8UxK9QsWPXoo79O+Ei50tJkWd+AGtQa3Vnv55Zt8QHCoygruuR+egmQELHCYCJK4KVU8H75FfkP4Lt6dZfTaQmiiX7lcU3qP1eN+V+/5GQRK7H3posS96I=",
+            "register_time":1511335462
+        },
+        "sign":"FR9YiHFoSwodTI4h3oQfobd8FLWvPFKPNPq+23dcvLnXvKSRpuk0Z6nkvR0jgs2R1PMD+4hAUz3nTiyrY8+7ntxw+TDXKNqib6CGrcS1WAAAPUJTtknVjojM+hz+MabNMugY5k6rPd9bktCwr1TxlXSBQZPMxPrXVsTp86gQt1g=",
+        "timestamp":1513677449
     }
 ```
 
@@ -200,13 +208,21 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
         * token
     * 原始数据  
 ```json
-         {
-                "uid":99,
-                "mobile":"13800138000",
-                "nickname":"User_13800138000",
-                "register_ip":"192.168.232.2",
-                "sso_tk":"UnmdO3T2CbiOjp/GWTnTdBh+cNh816nDlFegYdZ02yOoEAfe12XFmSbklBlUyC7AS0F5CfDVuzPKNn/pV4uUBiUso/hhF3PqKSj6XmACwk/yr+71Aff2ha+nax9+xtYoH/F+c8urDWLTZcqJCuzkTmpr0e5G/eXQNCmxC+S+kl0="
-         }
+
+    {
+        "error_code":0,
+        "error_message":"succeed",
+        "data":{
+            "uid":100,
+            "mobile":"13800138000",
+            "nickname":"User_13800138000",
+            "register_ip":"47.92.127.31",
+            "sso_tk":"WCATe8Iy4itr5BSNIQPjPS/Bg/obSS7caEPuAREb5zeDkuFacEv0H8UxK9QsWPXoo79O+Ei50tJkWd+AGtQa3Vnv55Zt8QHCoygruuR+egmQELHCYCJK4KVU8H75FfkP4Lt6dZfTaQmiiX7lcU3qP1eN+V+/5GQRK7H3posS96I=",
+            "register_time":1511335462
+        },
+        "sign":"FR9YiHFoSwodTI4h3oQfobd8FLWvPFKPNPq+23dcvLnXvKSRpuk0Z6nkvR0jgs2R1PMD+4hAUz3nTiyrY8+7ntxw+TDXKNqib6CGrcS1WAAAPUJTtknVjojM+hz+MabNMugY5k6rPd9bktCwr1TxlXSBQZPMxPrXVsTp86gQt1g=",
+        "timestamp":1513677449
+    }
 ```
 
 **<a name="LOGIN-CAPTCHA"></a>验证码登录**
@@ -222,12 +238,19 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
     * 原始数据 
 ```json
 {
-        "uid":99,
-        "mobile":"13800138000",
-        "nickname":"User_13800138000",
-        "register_ip":"192.168.232.2",
-        "sso_tk":"TNELR9yBoGDZ50jf8y8CSyQWbwloEE8oGLGvT9uIib//iyhbFO3oChPLPwnEXTwQmI3larhKmQbH0sZGh82tQTxz86eGyhRr9DdC/7m9fl0ODviTdDOvKjelYZrlTwJRwhSjQwawPL/pkfjPYIeHCeq1OHbaL9piK8+gB/6140I="
-}
+        "error_code":0,
+        "error_message":"succeed",
+        "data":{
+            "uid":100,
+            "mobile":"13800138000",
+            "nickname":"User_13800138000",
+            "register_ip":"47.92.127.31",
+            "sso_tk":"WCATe8Iy4itr5BSNIQPjPS/Bg/obSS7caEPuAREb5zeDkuFacEv0H8UxK9QsWPXoo79O+Ei50tJkWd+AGtQa3Vnv55Zt8QHCoygruuR+egmQELHCYCJK4KVU8H75FfkP4Lt6dZfTaQmiiX7lcU3qP1eN+V+/5GQRK7H3posS96I=",
+            "register_time":1511335462
+        },
+        "sign":"FR9YiHFoSwodTI4h3oQfobd8FLWvPFKPNPq+23dcvLnXvKSRpuk0Z6nkvR0jgs2R1PMD+4hAUz3nTiyrY8+7ntxw+TDXKNqib6CGrcS1WAAAPUJTtknVjojM+hz+MabNMugY5k6rPd9bktCwr1TxlXSBQZPMxPrXVsTp86gQt1g=",
+        "timestamp":1513677449
+    }
 ```
 
 **<a name="PASSWORD-RESET"></a>重置（忘记）密码**
@@ -242,15 +265,20 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
     * 原始数据 
 ```json
 {
-    "uid":99,
-    "mobile":"13800138000",
-    "nickname":"User_3800138000",
-    "register_ip":"192.168.232.2"
+    "error_code":0,
+    "error_message":"succeed",
+    "data":{
+        "uid":100,
+        "mobile":"13800138000",
+        "nickname":"User_13800138000",
+        "register_ip":"47.92.127.31",
+        "register_time":1511335462
+    },
+    "sign":"rVbOKhaY5/0o512Ukm8dcSF1LIIupM6Y6weZ1XnJFQdk5BcNOj7p9MyeFxex9GMAsXgmw1qdpeMAlVv7j1OgDwkIRRnmFyGW6WQM3tRQDsFiQgowpVZixwauBjVS7Fo2JDg60uq/KPyrnN074qCfQOAILdMlcWdPXpYGfyyLlbs=",
+    "timestamp":1513678877
 }
 ```
 **<a name="PASSWORD-MODIFY"></a>修改密码**
-
-*修改密码后，用户未执行登录操作，请您在onActivityResult回调中利用RESULT_CANCELED自行处理*
 
 * 调用方法：PassportHome.getInstance().startModifyPassword(this, REQUEST_CODE_PASSWORD);
 * 返回内容-修改后登录
@@ -262,27 +290,19 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
         * token
     * 原始数据  
 ```json
-         {
-                "uid":99,
-                "mobile":"13800138000",
-                "nickname":"User_13800138000",
-                "register_ip":"192.168.232.2",
-                "sso_tk":"UnmdO3T2CbiOjp/GWTnTdBh+cNh816nDlFegYdZ02yOoEAfe12XFmSbklBlUyC7AS0F5CfDVuzPKNn/pV4uUBiUso/hhF3PqKSj6XmACwk/yr+71Aff2ha+nax9+xtYoH/F+c8urDWLTZcqJCuzkTmpr0e5G/eXQNCmxC+S+kl0="
-         }
-```
-* 返回内容-修改后未登录
-    * 解析数据
-        * uid
-        * mobile
-        * nickname
-        * ip      
-    * 原始数据 
-```json
 {
-        "uid":99,
+    "error_code":0,
+    "error_message":"succeed",
+    "data":{
+        "uid":100,
         "mobile":"13800138000",
-        "nickname":"User_1380038000",
-        "register_ip":"192.168.232.2"
+        "nickname":"User_13800138000",
+        "register_ip":"47.92.127.31",
+        "sso_tk":"VmRhKOnoYOUAg7ZyVY69GIQ5M9+iBty0k+uKYDQo9JbAYTP5hsVLMJNDClCXGZFL1CzR+yKzzKIbTpbJLNTK7TjwbsrO/IK8S/+79h8bEAWUOku6/GUgbJxRkjYp4i1KfsbV2BRuvNh7EqCBFnMbKFjhK6GiuGqvIId8ymgk1vU=",
+        "register_time":1511335462
+    },
+    "sign":"nK+mDGgNA9nL41g0EGfP7OXM8qOwFDI2Pz3hX8IrRsIzhcsQBuLsZZy6kX/xgOq/E0p5/feXNtQ4CdJ5Z5Y+8kS2ebv7bVgx4+5NgLxzGO7xmeG22bypfWg1yysjgvsL8FvZGe2IsYg5KwQZCprMYK6rseQU48cgOGCF+OfQuyE=",
+    "timestamp":1513679274
 }
 ```
 
