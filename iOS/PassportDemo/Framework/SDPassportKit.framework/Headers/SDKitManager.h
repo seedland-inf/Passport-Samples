@@ -64,13 +64,32 @@
 - (void)openModifyPasswordViewAndCompletion:(SDKitCompleteBlock)modifySuccessBlock;
 
 /**
- 打开注册页
+ 打开忘记密码（重置密码）窗口
+
+ @param successBlock 重置密码成功后，执行的回调函数。
  */
-- (void)openRegisterView;
+- (void)openForgotPasswordViewAndCompletion:(SDKitCompleteBlock)successBlock;
+
+/**
+ 打开注册窗口
+
+ @param successBlock 完成注册后，执行的回调。
+ */
+- (void)openRegisterViewAndCompletion:(SDKitCompleteBlock)successBlock;
+
+/**
+ 验证码登录
+
+ @param allowColse 是否允许关闭返回。 该参数用法与密码登录窗口一样。  -(void)openLoginViewAndAllowClose:(BOOL)allowColse loginComplete:(SDKitCompleteBlock)loginSuccess
+ @param successBlock 登录成功后，执行的回调。
+ */
+- (void)openVerifyCodeLoginViewAndAllowClose:(BOOL)allowColse loginCompletion:(SDKitCompleteBlock)successBlock;
 
 /**
  退出登陆
+
+ @param showTips 是否展示退出提示。YES，表示显示。NO，不展示。
  */
-- (void)logoutAccount;
+- (void)logoutAccountAndShowTips:(BOOL) showTips;
 
 @end

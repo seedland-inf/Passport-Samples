@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "SDKitManager.h"
 #import "UserInfoModel.h"
-#import "SDPassportKit.h"
-
 
 @interface ViewController ()
 
@@ -135,11 +133,11 @@
     self.modifyButton = modifyPasswordBtn;
     [self.view addSubview:modifyPasswordBtn];
     
-//    UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [registerBtn setFrame:CGRectMake(50, 320, 100, 30)];
-//    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
-//    [registerBtn addTarget:self action:@selector(onRegisterButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:registerBtn];
+    UIButton *otherBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [otherBtn setFrame:CGRectMake(190, 450, 100, 30)];
+    [otherBtn setTitle:@"其他" forState:UIControlStateNormal];
+    [otherBtn addTarget:self action:@selector(onOtherButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:otherBtn];
     
     [self updateStatus];
 }
@@ -160,8 +158,6 @@
     _loginButton.hidden = isLogin;
     _logoutButton.hidden = !isLogin;
     _modifyButton.hidden = !isLogin;
-    
-    NSLog(@"sdk version %@", [NSString stringWithCString:SDPassportKitVersionString encoding:NSUTF8StringEncoding]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -203,12 +199,37 @@
 
 - (void)onRegisterButton:(UIButton *)sender
 {
-    [[SDKitManager shareKitManager] openRegisterView];
+    [[SDKitManager shareKitManager] openRegisterViewAndCompletion:^(NSDictionary *dict) {
+        NSLog(@"%@",dict);
+    }];
+}
+
+- (void)onForgotPassworButton:(UIButton *)sender
+{
+    [[SDKitManager shareKitManager] openForgotPasswordViewAndCompletion:^(NSDictionary *dict) {
+        NSLog(@"%@",dict);
+    }];
+}
+
+- (void)onVerifyCodeLoginButton:(UIButton *)sender
+{
+    __weak typeof(self) weakSelf = self;
+    [[SDKitManager shareKitManager] openVerifyCodeLoginViewAndAllowClose:YES loginCompletion:^(NSDictionary *dict) {
+        NSLog(@"%@",dict);
+        weakSelf.userInfo.userID = dict[@"uid"];
+        weakSelf.userInfo.nickname = dict[@"nickname"];
+        weakSelf.userInfo.mobile = dict[@"mobile"];
+        //        weakSelf.userInfo.signString = dict[@"sign"];
+        weakSelf.userInfo.tokenString = dict[@"sso_tk"];
+        
+        [weakSelf.userInfo saveInfo];
+        [weakSelf updateStatus];
+    }];
 }
 
 - (void)onLogoutButton:(UIButton *)sender
 {
-    [[SDKitManager shareKitManager] logoutAccount];
+    [[SDKitManager shareKitManager] logoutAccountAndShowTips:YES];
     [_userInfo clearInfo];
     [self updateStatus];
     
@@ -216,6 +237,70 @@
     NSLog(@"%@",msg);
     UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alt show];
+}
+
+- (void)onOtherButton:(UIButton *)sender
+{
+    UIView *otherView = [[UIView alloc] initWithFrame:self.view.frame];
+    otherView.backgroundColor = [UIColor whiteColor];
+    otherView.tag = 101;
+    [self.view addSubview:otherView];
+    
+    CGFloat y = 100.0f;
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [btn setFrame:CGRectMake(80, y, 100, 30)];
+        [btn setTitle:@"验证码登录" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(onVerifyCodeLoginButton:) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.borderWidth = 1.0;
+        btn.layer.borderColor = [UIColor blueColor].CGColor;
+        btn.layer.cornerRadius = 5.0f;
+        [otherView addSubview:btn];
+    }
+    
+    y = y + 40;
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [btn setFrame:CGRectMake(80, y, 100, 30)];
+        [btn setTitle:@"忘记密码" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(onForgotPassworButton:) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.borderWidth = 1.0;
+        btn.layer.borderColor = [UIColor blueColor].CGColor;
+        btn.layer.cornerRadius = 5.0f;
+        [otherView addSubview:btn];
+    }
+    
+    y = y + 40;
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [btn setFrame:CGRectMake(80, y, 100, 30)];
+        [btn setTitle:@"注册" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(onRegisterButton:) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.borderWidth = 1.0;
+        btn.layer.borderColor = [UIColor blueColor].CGColor;
+        btn.layer.cornerRadius = 5.0f;
+        [otherView addSubview:btn];
+    }
+    
+    y = y + 40;
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [btn setFrame:CGRectMake(80, y, 100, 30)];
+        [btn setTitle:@"关闭" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(closeOtherView:) forControlEvents:UIControlEventTouchUpInside];
+        btn.layer.borderWidth = 1.0;
+        btn.layer.borderColor = [UIColor blueColor].CGColor;
+        btn.layer.cornerRadius = 5.0f;
+        [otherView addSubview:btn];
+    }
+}
+
+- (void)closeOtherView:(UIButton *)sender
+{
+    UIView *view = [self.view viewWithTag:101];
+    if (view) {
+        [view removeFromSuperview];
+    }
 }
 
 @end
