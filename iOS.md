@@ -25,13 +25,15 @@
 ### <a name=“DOWNLOAD”></a>1.SDK与Demo下载
 （1）打开 https://github.com/seedland-inf/Passport-Samples
 
-（2）选择 iOS版本。路径/iOS/PassportDemo/
+（2）选择 iOS.md。此文件为Passport SDK文档。
 
-（3）选择 iOS.md。此文件为Passport SDK文档。
+（3）选择 iOS版本。路径/iOS/PassportDemo/
 
 **说明：**
 在PassportDemo中有Framework和PassportDemo两个文件夹。
+
 Framework：为Passport SDK。可直接将该部分内容加入工程。
+
 PassportDemo：为Passport 的使用Demo。举例列举了Passport的使用方法。
 
 
