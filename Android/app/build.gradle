@@ -22,6 +22,12 @@ android {
 
     buildTypes {
 
+        /*----- 测试环境 开发调试时使用 -----*/
+        debug{
+            resValue "string", "passport_channel", "test"         // PassportSDK的渠道号
+            resValue "string", "passport_key", "hay8qwz"          // PassportSDK的开发者Key
+        }
+
         release {
 
             minifyEnabled false
@@ -42,9 +48,25 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    implementation('cc.seedland.inf:passport:1.0.0@aar'){
+    /*---------------- 生产环境 快照版 -----------------*/
+//    implementation('cc.seedland.inf:passport:1.0.1-SNAPSHOT@aar'){
+//        transitive=true
+//    }
+
+    /*---------------- 生产环境 稳定版 -----------------*/
+//    implementation('cc.seedland.inf:passport:1.0.0@aar'){
+//        transitive=true
+//    }
+
+    /*---------------- 测试环境 开发版 -----------------*/
+    implementation('cc.seedland.inf:passport:1.0.2@aar'){
         transitive=true
+        changing=true
     }
+    /*
+    同时在gradle.properties中使用dev环境的REPO_URL
+    buildType中使debug的设置生效
+    */
 }
 
 
