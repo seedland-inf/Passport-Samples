@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'    // Android Studio 3.0.0及以上版本使用
+        classpath 'com.android.tools.build:gradle:3.1.1'    // Android Studio 3.0.0及以上版本使用
 //        classpath 'com.android.tools.build:gradle:2.3.3'  // Android Studio 2.3.3及以下版本使用
 
 
@@ -21,7 +21,8 @@ allprojects {
         google()
         jcenter()
 //        maven {url REPO_URL}
-        maven {url 'http://developer.seedland.cc/nexus/repository/maven-dev/'}
+//        maven {url 'http://developer.seedland.cc/nexus/repository/maven-dev/'}
+        maven {url 'http://developer.seedland.cc/nexus/repository/maven-public/'}
     }
 }
 
