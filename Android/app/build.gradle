@@ -6,11 +6,12 @@ apply plugin: 'com.android.application'
  ---------------------------------------------------*/
 
 android {
-    compileSdkVersion 26
+
+    compileSdkVersion 27
     defaultConfig {
         applicationId "cc.seedland.inf.samples"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,18 +20,17 @@ android {
         resValue "string", "passport_channel", "passport.android"         // PassportSDK的渠道号
         resValue "string", "passport_key", "dk^wBXnw3cUUqBgB"             // PassportSDK的开发者Key
     }
-
     buildTypes {
-
         /*----- 测试环境 开发调试时使用 -----*/
-        debug{
+        debug {
             resValue "string", "passport_channel", "test"         // PassportSDK的渠道号
             resValue "string", "passport_key", "hay8qwz"          // PassportSDK的开发者Key
         }
-
         release {
 
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,32 +41,35 @@ configurations.all {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     /*---------------- 生产环境 快照版 -----------------*/
-//    implementation('cc.seedland.inf:passport:1.0.1-SNAPSHOT@aar'){
-//        transitive=true
-//    }
-
+    //    implementation('cc.seedland.inf:passport:1.0.1-SNAPSHOT@aar'){
+    //        transitive=true
+    //    }
     /*---------------- 生产环境 稳定版 -----------------*/
-//    implementation('cc.seedland.inf:passport:1.0.0@aar'){
-//        transitive=true
-//    }
-
+    //    implementation('cc.seedland.inf:passport:1.0.0@aar'){
+    //        transitive=true
+    //    }
     /*---------------- 测试环境 开发版 -----------------*/
-    implementation('cc.seedland.inf:passport:1.0.2@aar'){
-        transitive=true
-        changing=true
+    implementation('cc.seedland.inf:passport:1.0.1@aar') {
+        transitive = true
+        changing = true
     }
+
+    api ('org.ros.rosjava_core:rosjava:0.3.5') {
+        exclude group: 'xml-apis'
+        exclude group: 'junit'
+    }
+
     /*
-    同时在gradle.properties中使用dev环境的REPO_URL
-    buildType中使debug的设置生效
-    */
+            同时在gradle.properties中使用dev环境的REPO_URL
+            buildType中使debug的设置生效
+            */
 }
 
 

@@ -5,6 +5,7 @@
     * [添加代码仓库](#REPO)
     * [添加依赖](#DEPENENCY)
     * [添加开发者支持](#SUPPORT)
+    * [混淆规则](#PROGUARD)
 * [文档](#DOC)
     * [1.初始化](#INITIAL)
     * [2.调用](#CALL)
@@ -71,6 +72,43 @@ defaultConfig {
         resValue "string", "passport-key", "your key"              // PassportSDK的开发者Key
 }
 ```
+
+### <a name="PROGUARD"></a>4.混淆规则
+1. 在app的proguard-rules.pro文件中添加如下规则
+2. 如果项目中已经添加okhttp和Gson的混淆规则，直接添加# passport部分的混淆规则即可
+
+```
+-ignorewarnings
+
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+#okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+
+##---------------Begin: proguard configuration for Gson  ----------
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn sun.misc.**
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+##---------------End: proguard configuration for Gson  ----------
+
+# passport
+-keepparameternames
+-keep class cc.seedland.inf.passport.PassportHome{*;}
+-keep public class * extends cc.seedland.inf.passport.base.BaseBean{*;}
+-keep class cc.seedland.inf.passport.base.BaseBean{*;}
+-keep class cc.seedland.inf.passport.network.BeanWrapper{*;}
+
+```
+
+
+
 
 ## <a name="DOC"></a>文档
 
