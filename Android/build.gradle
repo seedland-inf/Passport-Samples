@@ -22,8 +22,8 @@ allprojects {
         jcenter()
 
 //        maven {url REPO_URL}
-//        maven {url 'http://developer.seedland.cc/nexus/repository/maven-dev/'}
-        maven {url 'http://developer.seedland.cc/nexus/repository/maven-public/'}
+        maven {url 'http://developer.seedland.cc/nexus/repository/maven-dev/'}
+//        maven {url 'http://developer.seedland.cc/nexus/repository/maven-public/'}
     }
 }
 

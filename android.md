@@ -8,7 +8,9 @@
     * [混淆规则](#PROGUARD)
 * [文档](#DOC)
     * [1.初始化](#INITIAL)
-    * [2.调用](#CALL)
+    * [2.开启自动刷新token](#UPDATE-TOKEN)
+    * [3.调用](#CALL) 
+        * [检查登录状态](#CHECK-LOGIN)
         * [注册](#REGISTER)
         * [密码登录](#LOGIN-PASSWORD)
         * [验证码登录](#LOGIN-CAPTCHA)
@@ -18,7 +20,7 @@
         * [登出](#LOGOUT)
 
 ## <a name="USE"></a>使用
-[![](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html) ![](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)
+[![](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html) ![](https://img.shields.io/badge/version-1.0.3-brightgreen.svg)
 
 ### <a name=“REPO”></a>1.添加代码仓库
 
@@ -62,14 +64,16 @@ dependencies {
 
 **将开发者channel及key到工程**
 
-在App目录下的gradle.build文件中，选用以下两种方式任意一种添加：
+在App目录下的gradle.build文件中：
 
 * 在defaultConfig统一添加
+
 ```gradle
+
 defaultConfig {
         // passport_channel和passport-key为资源名，可任意命名，但必须满足资源命名规则
         resValue "string", "passport_channel", "your channel"      // PassportSDK的渠道号
-        resValue "string", "passport-key", "your key"              // PassportSDK的开发者Key
+        resValue "string", "passport_key", "your key"              // PassportSDK的开发者Key
 }
 ```
 
@@ -104,6 +108,7 @@ defaultConfig {
 -keep public class * extends cc.seedland.inf.passport.base.BaseBean{*;}
 -keep class cc.seedland.inf.passport.base.BaseBean{*;}
 -keep class cc.seedland.inf.passport.network.BeanWrapper{*;}
+-keep interface cc.seedland.inf.passport.network.TokenCallback{*;}
 
 ```
 
@@ -139,7 +144,19 @@ public class SampleApplication extends Application {
         ...
 </application>
 ```
-### <a name="CALL"></a>2. 调用
+
+### <a name="UPDATE-TOKEN"></a>2. 开启自动刷新token
+开启自动刷新token功能后，在每次打开app时会自动刷新token，默认为关闭
+
+
+***注意：必须在初始化后调用，否则不起作用，建议在Application中调用***
+
+``` java
+PassportHome.enableTokenUpdate(true);
+```
+
+
+### <a name="CALL"></a>3. 调用
 
 SDK统一使用startActivityForResult的方式调用支持Passport APIs的界面，包括以下步骤：
 
@@ -206,6 +223,32 @@ PassportHome.getInstance().startLoginByPassword(this, REQUEST_CODE_LOGIN);
     }
 ...
 ```
+
+**<a name="CHECK-LOGIN"></a>检查登录状态**
+
+* 调用方法：
+
+```java
+
+PassportHome.getInstance().checkLogin(new TokenCallback(){
+            
+            @Override
+            public void onTokenReceived(String newToken) {
+                // 刷新成功 - 处于登录状态
+                ...
+            }
+
+            @Override
+            public void onTokenExpired(String oldToken) {
+                // 刷新失败 - 登录过期
+                ...
+            }
+        });
+
+```
+* 返回内容
+	* 检验成功，执行onTokenReceived(String newToken), 获取新token
+	* 检验失败，执行onTokenExpired(String oldToken), 返回旧token
 
 **<a name="REGISTER"></a>注册**
 

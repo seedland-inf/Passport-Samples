@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cc.seedland.inf.passport.PassportHome;
+import cc.seedland.inf.passport.network.TokenCallback;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,7 +42,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logoutBtn.setOnClickListener(this);
         resultTxv = findViewById(R.id.main_result);
 
-        updateState();
+        PassportHome.getInstance().checkLogin(new TokenCallback() {
+            @Override
+            public void onTokenReceived(String s) {
+                passwordBtn.setVisibility(View.VISIBLE);
+                logoutBtn.setVisibility(View.VISIBLE);
+                avatarImv.setImageResource(R.mipmap.ic_login_person);
+                nickNameTxv.setText(Config.getNickName());
+                mobileTxv.setText(Config.getMobile());
+                remarkTxv.setVisibility(View.VISIBLE);
+                remarkTxv.setText("uid:" + Config.getUid());
+            }
+
+            @Override
+            public void onTokenExpired(String s) {
+                passwordBtn.setVisibility(View.GONE);
+                logoutBtn.setVisibility(View.GONE);
+                avatarImv.setImageResource(R.mipmap.ic_default_person);
+                nickNameTxv.setText("未登录");
+                mobileTxv.setText("-");
+                remarkTxv.setText("点击头像登录");
+            }
+        });
 
     }
 
@@ -73,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (requestCode) {
                 case REQUEST_CODE_LOGIN:
                     Bundle args = data.getBundleExtra("result");
-                    Config.saveUid(args.getString("uid"));
+                    Config.saveUid(String.valueOf(args.getInt("uid")));
                     Config.saveNickName(args.getString("nickname"));
                     Config.saveMobile(args.getString("mobile"));
                     updateState();
@@ -99,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateState() {
+
         if(!TextUtils.isEmpty(PassportHome.getInstance().getToken())) { // 已登录
             passwordBtn.setVisibility(View.VISIBLE);
             logoutBtn.setVisibility(View.VISIBLE);

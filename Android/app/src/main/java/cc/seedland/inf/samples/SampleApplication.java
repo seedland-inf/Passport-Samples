@@ -17,6 +17,7 @@ public class SampleApplication extends Application {
     public void onCreate() {
         super.onCreate();
         PassportHome.getInstance().init(this, getString(R.string.passport_channel), getString(R.string.passport_key));
+        PassportHome.enableTokenUpdate(true);
         CONTEXT = this;
     }
 }

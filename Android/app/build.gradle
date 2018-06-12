@@ -56,7 +56,7 @@ dependencies {
     //        transitive=true
     //    }
     /*---------------- 测试环境 开发版 -----------------*/
-    implementation('cc.seedland.inf:passport:1.0.1@aar') {
+    implementation('cc.seedland.inf:passport:1.0.3@aar') {
         transitive = true
         changing = true
     }
