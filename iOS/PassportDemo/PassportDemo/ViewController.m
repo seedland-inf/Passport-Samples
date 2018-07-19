@@ -140,6 +140,11 @@
     [self.view addSubview:otherBtn];
     
     [self updateStatus];
+    
+    // 埋点
+    [[SDKitManager shareKitManager] eventInfo:^(NSDictionary *dict) {
+        NSLog(@"event == %@", dict);
+    }];
 }
 
 - (void)updateStatus
@@ -168,16 +173,33 @@
 - (void)onLoginButton:(UIButton *)sender
 {
     __weak typeof(self) weakSelf = self;
+    // 方法一。不带返回事件的调用方式。
+    //    [[SDKitManager shareKitManager] openLoginViewAndAllowClose:YES loginComplete:^(NSDictionary *dict) {
+    //        NSLog(@"%@",dict);
+    //        weakSelf.userInfo.userID = dict[@"uid"];
+    //        weakSelf.userInfo.nickname = dict[@"nickname"];
+    //        weakSelf.userInfo.mobile = dict[@"mobile"];
+    ////        weakSelf.userInfo.signString = dict[@"sign"];
+    //        weakSelf.userInfo.tokenString = dict[@"sso_tk"];
+    //
+    //        [weakSelf.userInfo saveInfo];
+    //        [weakSelf updateStatus];
+    //    }];
+    
+    // 方法二。带返回事件回调的调用方式。
     [[SDKitManager shareKitManager] openLoginViewAndAllowClose:YES loginComplete:^(NSDictionary *dict) {
         NSLog(@"%@",dict);
         weakSelf.userInfo.userID = dict[@"uid"];
         weakSelf.userInfo.nickname = dict[@"nickname"];
         weakSelf.userInfo.mobile = dict[@"mobile"];
-//        weakSelf.userInfo.signString = dict[@"sign"];
+        //        weakSelf.userInfo.signString = dict[@"sign"];
         weakSelf.userInfo.tokenString = dict[@"sso_tk"];
         
         [weakSelf.userInfo saveInfo];
         [weakSelf updateStatus];
+    } back:^{
+        UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"返回" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alt show];
     }];
 }
 
